@@ -28,3 +28,18 @@
 924330300 c:\users\user\desktop\week08_glut_3d家\glm.h
 	<GL/glut.h>
 
+924276300 source:c:\users\user\desktop\2022graphics1\week08_glut_3d家\glm.cpp
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	"glm.h"
+
+924276300 c:\users\user\desktop\2022graphics1\week08_glut_3d家\glm.h
+	<GL/glut.h>
+
+1649679122 source:c:\users\user\desktop\2022graphics1\week08_glut_3d家\main.cpp
+	<GL/glut.h>
+	"glm.h"
+

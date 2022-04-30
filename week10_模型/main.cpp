@@ -1,6 +1,7 @@
 #include <opencv/highgui.h> ///使用 OpenCV 2.1 比較簡單, 只要用 High GUI 即可
 #include <opencv/cv.h>
 #include <GL/glut.h>
+GLUquadric *sphere =NULL;///指標二次曲面
 int myTexture(char * filename)
 {
     IplImage * img = cvLoadImage(filename); ///OpenCV讀圖
@@ -16,25 +17,32 @@ int myTexture(char * filename)
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img->width, img->height, 0, GL_RGB, GL_UNSIGNED_BYTE, img->imageData);
     return id;
 }
+float angle=0;
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT); ///畫圖前,清畫面
-    glColor3f(1,1,1); ///設定色彩(黃色)
-    ///glutSolidTeapot(0.3); ///實心的茶壺
-    glBegin(GL_POLYGON);
-        glTexCoord2f(0,1); glVertex2f(-1,-1);
-        glTexCoord2f(1,1); glVertex2f(+1,-1);
-        glTexCoord2f(1,0); glVertex2f(+1,+1);
-        glTexCoord2f(0,0); glVertex2f(-1,+1);
-    glEnd();
+    glPushMatrix();///備份
+        if(pmodel==NULL)
+        {
+            pmodel=glReadOBJ("data/Diffuse.jpg");
+            glmUnitize(pmodel);
+            glmVertexNormal(pmodel);
+
+        }
+        glmDraw(pmodel,GLM TEXTURE);
+    glPopMatrix();///還原
     glutSwapBuffers(); ///畫好後,交換出來
-}
+    angle+=1;///每次執行display() 加一度
+    }
 int main(int argc,char**argv) ///main()主函式進階版
 {
     glutInit(&argc,argv); ///把參數給glutInit初始化
     glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH); ///雙緩衝區,3D深度功能
+    glutIdleFunc(display);
     glutCreateWindow("第02的程式"); ///開啟GLUT視窗
+    glEnable(GL_DEPTH_TEST);///開3D深度測試,才會有3D效果
     glutDisplayFunc(display); ///用來顯示函式
-    myTexture("275072366_1026508611235766_7459024748341998334_n.jpg");
+    myTexture("data/Diffuse.jpg");
+   /// sphere=gluNewQuadric();///準備好二次曲面
     glutMainLoop();
 }

@@ -20,13 +20,7 @@ void display()
 {
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT); ///畫圖前,清畫面
     glColor3f(1,1,1); ///設定色彩(黃色)
-    ///glutSolidTeapot(0.3); ///實心的茶壺
-    glBegin(GL_POLYGON);
-        glTexCoord2f(0,1); glVertex2f(-1,-1);
-        glTexCoord2f(1,1); glVertex2f(+1,-1);
-        glTexCoord2f(1,0); glVertex2f(+1,+1);
-        glTexCoord2f(0,0); glVertex2f(-1,+1);
-    glEnd();
+    glutSolidTeapot(0.3); ///實心的茶壺
     glutSwapBuffers(); ///畫好後,交換出來
 }
 int main(int argc,char**argv) ///main()主函式進階版
@@ -35,6 +29,6 @@ int main(int argc,char**argv) ///main()主函式進階版
     glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH); ///雙緩衝區,3D深度功能
     glutCreateWindow("第02的程式"); ///開啟GLUT視窗
     glutDisplayFunc(display); ///用來顯示函式
-    myTexture("275072366_1026508611235766_7459024748341998334_n.jpg");
+    myTexture("acMe5Ec.png");
     glutMainLoop();
 }
